@@ -1,0 +1,44 @@
+name: 简单 CI 演示
+
+# 触发条件：当代码推送到 main 分支时运行
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# 定义作业
+jobs:
+  # 测试作业
+  test:
+    # 运行环境：Ubuntu 最新版本
+    runs-on: ubuntu-latest
+    
+    # 步骤
+    steps:
+    # 步骤1：检出代码
+    - name: 检出代码
+      uses: actions/checkout@v4
+      
+    # 步骤2：设置 Python 环境
+    - name: 设置 Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.13'
+        
+    # 步骤3：安装依赖
+    - name: 安装依赖
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .
+        
+    # 步骤4：运行测试
+    - name: 运行测试
+      run: |
+        python main.py
+        
+    # 步骤5：显示成功消息
+    - name: 显示成功消息
+      run: |
+        echo "🎉 所有测试通过！"
+        echo "这是一个最简单的 GitHub Actions 演示" 
