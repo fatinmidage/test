@@ -10,8 +10,10 @@ test/
 │   └── workflows/
 │       ├── ci.yml              # 基础 GitHub Actions 工作流
 │       └── advanced-ci.yml     # 高级 GitHub Actions 工作流
+├── tests/
+│   ├── __init__.py             # 测试包初始化文件
+│   └── test_main.py            # 测试文件
 ├── main.py                     # 简单的 Python 程序
-├── test_main.py                # 测试文件
 ├── pyproject.toml              # Python 项目配置
 └── README.md                   # 项目说明
 ```
@@ -90,6 +92,12 @@ test/
 - **Pytest**: Python 测试框架
 - **GitHub Actions**: GitHub 的 CI/CD 平台
 
+## 问题解决
+
+### 常见问题
+1. **setuptools 多模块错误**: 已通过明确指定 `py-modules` 和重新组织项目结构解决
+2. **依赖安装问题**: 简化了安装过程，移除了可能导致问题的 `-e .` 安装
+
 ## 下一步学习
 
 - 添加更多测试步骤
@@ -106,7 +114,7 @@ test/
 python main.py
 
 # 运行测试
-pytest test_main.py -v
+pytest tests/ -v
 
 # 代码格式化
 black .
@@ -122,8 +130,8 @@ flake8 .
 Hello from test!
 
 # pytest 输出
-test_main.py::test_main_function_exists PASSED
-test_main.py::test_main_function PASSED
+tests/test_main.py::test_main_function_exists PASSED
+tests/test_main.py::test_main_function PASSED
 ```
 
 这个演示展示了 GitHub Actions 的基本用法，你可以在此基础上添加更多功能！
